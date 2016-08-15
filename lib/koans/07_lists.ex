@@ -60,14 +60,14 @@ defmodule Lists do
   end
 
   koan "Wrapping other values is a handy option" do
-    assert List.wrap("value") == ___
+    assert List.wrap("value") == ["value"]
   end
 
   koan "Wrapping nothing produces a list of nothing" do
-    assert List.wrap(nil) == ___
+    assert List.wrap(nil) == []
   end
 
   koan "When there is already a list do not wrap it again" do
-    assert List.wrap(["value"]) == ___
+    assert List.wrap(["value"]) == ["value"]
   end
 end

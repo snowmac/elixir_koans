@@ -92,23 +92,23 @@ defmodule PatternMatching do
 
   koan "You can pattern match into the fields of a struct" do
     %Animal{name: name} = %Animal{kind: "dog", name: "Max"}
-    assert name == ___
+    assert name == "Max"
   end
 
   koan "Structs will even match with a regular map" do
     %{name: name} = %Animal{kind: "dog", name: "Max"}
-    assert name == ___
+    assert name == "Max"
   end
 
   koan "A value can be bound to a variable" do
     a = 1
-    assert a == ___
+    assert a == 1
   end
 
   koan "A variable can be rebound" do
     a = 1
     a = 2
-    assert a == ___
+    assert a == 2
   end
 
   koan "A variable can be pinned to use its value when matching instead of binding to a new value" do
@@ -119,9 +119,9 @@ defmodule PatternMatching do
       (2) -> "The number Two"
       (number) -> "The number #{number}"
     end
-    assert example.(1) == ___
-    assert example.(2) == ___
-    assert example.(3) == ___
+    assert example.(1) == "The number One"
+    assert example.(2) == "The number Two"
+    assert example.(3) == "The number 3"
   end
 
   koan "Pinning works anywhere one would match, including 'case'" do
@@ -131,13 +131,13 @@ defmodule PatternMatching do
                other -> "different #{other}"
              end
 
-    assert result == ___
+    assert result == "same"
   end
 
   koan "Trying to rebind a pinned variable will result in an error" do
     a = 1
     assert_raise MatchError, fn() ->
-      ^a = ___
+      ^a = 2
     end
   end
 end
